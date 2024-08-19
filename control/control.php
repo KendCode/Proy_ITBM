@@ -28,9 +28,20 @@ $resp= mysqli_fetch_assoc($resultado);
 
 
 
-if($usuario==$resp['ci'] && $contrasena==$resp['contrasena'])
+/*if($usuario==$resp['ci'] && $contrasena==$resp['contrasena'])
 {
-echo "usuario tipo estudiante";
+ if($resp['id_sesion']==1){
+    echo "Usuario tipo Estudiante";
+ }
+ elseif($resp['id_sesion']==2){
+    echo "Usuario tipo Administrativo";
+ }  
+ elseif($resp['id_sesion']==3){
+    echo "Usuario tipo Docente";
+ }
+ elseif($resp['id_sesion']==4){
+    echo "Usuario tipo Rector";
+ }
 //creamos la sesion
 //session_start();
 //$_SESSION["va el nombre de la sesion"]=$usuario;
@@ -42,6 +53,26 @@ echo "usuario tipo estudiante";
    // echo "<script>alert('usuario o contraseña incorrecta')</script>";
     //echo '<script>window.location="../loggin.html"</script>';
     
+}*/
+
+if($usuario==$resp['ci'] && $contrasena==$resp['contrasena'])
+{
+    switch($resp['id_sesion']){
+        case 1:
+            echo "Usuario Estudiante";
+            break;
+        case 2:
+            echo "Usuario Administrativo";
+            break;
+        case 3:
+            echo "Usuario Docente";
+            break;
+        case 4:
+            echo "Usuario Rector";
+            break;
+    }
+}else{
+	echo "usuario incocorrecto";
 }
 
 
