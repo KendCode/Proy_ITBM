@@ -1,0 +1,80 @@
+
+
+
+p {
+
+	color: white;
+	display: table-cell; /*unir las letras en una sola linea*/
+	padding: 20px;
+}
+
+section {
+
+	background: yellow;
+}
+
+
+img {
+width: 100px; /*define el tamaño*/
+margin-left: 20px; /*mueve el margen a la izquierda*/
+margin-top: 10px; /*mueve el margen a los 4 lados*/
+}
+
+nav	{
+
+	float: right;/*flotar a la derecha*/
+	margin-right: 100px;
+}
+
+li{
+	display: table-cell;
+	padding: 20px;
+
+}
+
+
+a{
+	 text-decoration: none;
+	 font-family: monospace;
+
+} 
+
+/*hover: efectos al encabezado*/
+
+li:hover{
+
+	background: red;
+	border-radius: 10px; /*efecto curva*/
+	transition: ease 2s all; /*muestra un efecto por un determinado tiempo*/
+
+}
+
+li:hover a{
+	color:white;
+}
+
+.submenu {
+
+background: green;
+border-radius: 10px;
+transition: ease 2s all;
+position: absolute;
+display: none;
+
+}
+
+.submenu li a{
+
+	display: block;
+}
+
+li:hover .submenu{
+	display:block;
+
+}
+
+div {
+background: blue;
+
+
+}
