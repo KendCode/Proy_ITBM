@@ -30,19 +30,22 @@ $resp= mysqli_fetch_assoc($resultado);
 
 if($usuario==$resp['ci'] && $contrasena==$resp['contrasena'])
 {
-//echo "usuario tipo estudiante";
-//creamos la sesion
-session_start();
-//$_SESSION["va el nombre de la sesion"]=$usuario;
-$_SESSION['admin']=$usuario;
-$_SESSION['nombre']=$resp['nombre'];
-//$_SESSION['contrasena']=$contrasena;
-echo '<script>window.location="../administracion.php"</script>';
+    switch($resp['id_sesion']){
+        case 1:
+            echo "Usuario Estudiante";
+            break;
+        case 2:
+            echo "Usuario Administrativo";
+            break;
+        case 3:
+            echo "Usuario Docente";
+            break;
+        case 4:
+            echo "Usuario Rector";
+            break;
+    }
 }else{
-//	echo "usuario incocorrecto";
-    echo "<script>alert('usuario o contraseña incorrecta')</script>";
-   echo '<script>window.location="../loggin.php"</script>';
-    
+    echo "usuario incocorrecto";
 }
 
 
