@@ -40,49 +40,85 @@ echo "<br>con nombre: ".$_SESSION['nombre'];
 <?php
 $ci=$_POST['ci'];
 
+
 //primer paso
-//$consulta="SELECT * FROM estudiante WHERE ci = '$ci'";
-$consulta = "SELECT e.ci, e.nombre, e.ap_pat, e.ap_mat, e.genero, e.edad, e.celular, e.contrasena, s.descripcion_sesion 
-             FROM estudiante e
-             JOIN sesion s ON e.id_sesion = s.id_sesion";
+$consulta="SELECT * FROM estudiante WHERE ci = '$ci'";
+//$consulta="SELECT * FROM estudiante";
 //segunda paso 
 $respuesta=mysqli_query($conexion,$consulta);
 
 // tercer paso
-if (mysqli_num_rows($respuesta) > 0) {
-        // Muestra el encabezado solo una vez
-        echo '<table border="2">';
-        echo '<tr>
-                <th>CI</th>
-                <th>NOMBRE</th>
-                <th>APELLIDO PATERNO</th>
-                <th>APELLIDO MATERNO</th>
-                <th>GENERO</th>
-                <th>EDAD</th>
-                <th>CELULAR</th>
-                <th>CONTRASEÑA</th>
-                <th>ROL</th>
-              </tr>';
+// 
+while($fila=mysqli_fetch_array($respuesta))
+{
 
-        while ($fila = mysqli_fetch_array($respuesta)) {
-            echo '<tr>
-                    <td>' . $fila['ci'] . '</td>
-                    <td>' . $fila['nombre'] . '</td>
-                    <td>' . $fila['ap_pat'] . '</td>
-                    <td>' . $fila['ap_mat'] . '</td>
-                    <td>' . $fila['genero'] . '</td>
-                    <td>' . $fila['edad'] . '</td>
-                    <td>' . $fila['celular'] . '</td>
-                    <td>' . $fila['contrasena'] . '</td>
-                    <td>' . $fila['descripcion_sesion'] . '</td>
-                  </tr>';
-        }
-
-        echo '</table>';
-    } else {
-        echo 'No se encontraron resultados.';
-    }
+//echo "el ci buscado es: ".$fila['ci'];
+//echo "el nombre del buscado es: ".$fila['nombre'];
 ?>
+
+<table border="2">
+
+	<tr>
+		<th>CI</th>
+		<th>NOMBRE</th>
+		<th>APELLIDO PATERNO</th>
+		<th>APELLIDO MATERNO</th>
+		<th>GENERO</th>
+		<th>EDAD</th>
+		<th>CELULAR</th>
+		<th>CONTRASEÑA</th>
+		<th>ROL</th>
+		<th>ELIMINAR</th>
+		<th>MODIFICAR</th>
+
+	</tr>
+	<tr>
+		<td><?php echo $fila['ci'];?></td>
+		<td><?php echo $fila['nombre'];?></td>
+			<td><?php echo $fila['ap_pat'];?></td>
+			<td><?php echo $fila['ap_mat'];?></td>
+			<td><?php echo $fila['genero'];?></td>
+			<td><?php echo $fila['edad'];?></td>
+			<td><?php echo $fila['celular'];?></td>
+			<td><?php echo $fila['contrasena'];?></td>
+			<td><?php echo $fila['id_sesion'];?></td>
+			<?php $ci=$fila['ci']; 
+			//echo "el ci buscado es: ".$ci;
+			?>
+
+			<td><form action="control/abm.php" method="post">
+				<input type="hidden" name="ci" value="<?php echo $ci;?>">
+			<input type="submit" name="btn1" value="ELIMINAR">	
+			</form></td>
+			<td>
+				<form action="modificar.php" method="post">
+				<input type="hidden" name="ci" value="<?php echo $ci;?>">
+			<input type="submit" name="btn2" value="MODIFICAR">	
+			</form>
+			</td>
+	</tr>
+
+
+</table>
+
+
+
+<?php
+}
+
+
+?>
+
+
+<p>REGISTRO DE NUEVO ESTUDIANTE</p>
+<form action="registro.php">
+	
+	<input type="submit" value="REGISTRAR NUEVO ESTUDIANTE">
+</form>
+
+
+
+
 
 </body>
 </html>
