@@ -79,8 +79,41 @@ $celular=$_POST['celular'];
 $contrasena=$_POST['contrasena'];
 $id_sesion=$_POST['id_sesion'];
 
+// codigo para guardar imagen
+
+
+        $nombre_foto   = $_FILES['archivo']['name'];
+        $guardado = $_FILES['archivo']['tmp_name'];
+        $tipo     = $_FILES['archivo']['type'];
+
+
+
+        $extension = pathinfo($nombre_foto, PATHINFO_EXTENSION);
+/*echo "el nombre del archivo es: ".$nombre;
+echo "el guardado del archivo es: ".$guardado;
+echo "el tipo del archivo es: ".$tipo;
+echo "la extension del archivo es: ".$extension;*/
+
+        $nombre_archivo = $ci . '.' . $extension;
+
+        //if (move_uploaded_file($guardado, '/rudeal/sin_firmas/' . $nombre_archivo)) {
+        if (move_uploaded_file($guardado, 'C:/xampp1/htdocs/2-2024/images/fotos/' . $nombre_archivo)) {
+
+            echo "archivo guardado con exito";
+        } else {
+            echo "archivo no guardado";
+
+        }
+
+
+
+
+
+
+
+//
 // primer paso para el query
-$consulta="INSERT INTO estudiante (ci, nombre, ap_pat, ap_mat, genero, celular, edad, contrasena, id_sesion) VALUES ('$ci', '$nombre', '$ap_pat', '$ap_mat', '$genero', '$celular', '$edad', '$contrasena', '$id_sesion')";
+$consulta="INSERT INTO estudiante (ci, nombre, ap_pat, ap_mat, foto ,genero, celular, edad, contrasena, id_sesion) VALUES ('$ci', '$nombre', '$ap_pat', '$ap_mat', '$nombre_archivo' ,'$genero', '$celular', '$edad', '$contrasena', '$id_sesion')";
 //segundo paso
 mysqli_query($conexion,$consulta);
 

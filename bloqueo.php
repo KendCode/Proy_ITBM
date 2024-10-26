@@ -1,11 +1,24 @@
 <?php
 
-session_start();
-if($_SESSION['usuario']!='alfredo')
+function verifica_sesion()
 {
-    header('location:loggin.php');
-    exit();
+
+if (!$_SESSION['admin']){
+	// unset(variable de sesion)  destruye una variable
+    unset($_SESSION);
+	header ("location: loggin.php");
 }
 
+}
+/*
+if($_SESSION['admin']=='si')
+{
+     header('location:loggin.php');
+    exit(); 
+} else {
+
+	 
+}
+*/
 
 ?>

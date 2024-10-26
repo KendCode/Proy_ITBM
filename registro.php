@@ -10,7 +10,7 @@
 
 
 
-<form action="control/abm.php" method="post">
+<form action="control/abm.php" method="post" enctype="multipart/form-data">
 	CI:
 	<input type="text" name="ci" >
 	<br>
@@ -60,6 +60,10 @@ GENERO:
   <option value="2">Docente</option>
 </select>
 
+<br> FOTOGRAFIA
+<input type="file" name="archivo">
+
+<br>
 
 <input type="submit" name="btn4" value="REGISTRAR">
 </form>

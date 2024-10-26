@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-08-2024 a las 01:47:44
+-- Tiempo de generación: 12-09-2024 a las 18:24:24
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `itbm`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cursos`
+--
+
+CREATE TABLE `cursos` (
+  `id_curso` int(11) NOT NULL,
+  `paralelo` varchar(15) NOT NULL,
+  `gestion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cursos`
+--
+
+INSERT INTO `cursos` (`id_curso`, `paralelo`, `gestion`) VALUES
+(3, '3b', 2024);
 
 -- --------------------------------------------------------
 
@@ -60,19 +79,29 @@ CREATE TABLE `estudiante` (
   `celular` int(11) NOT NULL,
   `edad` int(11) NOT NULL,
   `contrasena` int(11) NOT NULL,
-  `id_sesion` int(11) NOT NULL
+  `id_sesion` int(11) NOT NULL,
+  `foto` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `estudiante`
 --
 
-INSERT INTO `estudiante` (`ci`, `nombre`, `ap_pat`, `ap_mat`, `genero`, `celular`, `edad`, `contrasena`, `id_sesion`) VALUES
-(1111111, 'Kender', 'Mendoza', 'Canaviri', 'Masculino', 60539021, 20, 1111111, 1),
-(2222222, 'Alambrito', 'Perez', 'Perez', 'Masculino', 77720158, 23, 2222222, 2),
-(3333333, 'Ana', 'Castillo', 'Moto', 'Femenino', 63542219, 28, 3333333, 1),
-(8888888, 'Lucas', 'Martinez', 'Rodriguez', 'Masculino', 62849513, 24, 8888888, 4),
-(9999999, 'Sol', 'Morgan', 'Garcia', 'Femenino', 72589356, 28, 9999999, 3);
+INSERT INTO `estudiante` (`ci`, `nombre`, `ap_pat`, `ap_mat`, `genero`, `celular`, `edad`, `contrasena`, `id_sesion`, `foto`) VALUES
+(12, '', '1', '1', 'masculino', 1, 1, 1, 1, ''),
+(13, '', '', '', 'masculino', 0, 0, 0, 1, ''),
+(14, '', '1', '1', 'femenino', 1, 1, 0, 1, ''),
+(15, 'FOTO.png', '1', '1', 'masculino', 1, 1, 1, 1, ''),
+(16, '1.png', '2', '1', 'masculino', 1, 1, 1, 1, '16_png'),
+(17, '2', '2', '2', 'masculino', 2, 2, 2, 1, '17_jpg'),
+(18, '1', '1', '1', 'masculino', 1, 1, 1, 1, '18.png'),
+(20, '1', '1', '1', 'masculino', 1, 1, 1, 1, '20.png'),
+(21, '1', '1', '2', 'masculino', 1, 1, 1, 1, '21.png'),
+(1111111, 'Kenderr', 'Mendozas', 'Canaviris', 'Masculinos', 60539021, 20, 1111111, 1, ''),
+(2222222, 'Alambrito', 'Perez', 'Perez', 'Masculino', 77720158, 23, 2222222, 2, ''),
+(9247923, 'r', '', '', 'masculino', 0, 0, 9247923, 1, ''),
+(9964241, 'DANIEL', 'MAMANI', 'CHOQUE', 'MASCULINO', 12345678, 23, 9964241, 1, 'foto.png'),
+(9999999, 'Solas', 'garcias', 'Garcia', 'femenino', 213123, 23, 1, 3, '');
 
 -- --------------------------------------------------------
 

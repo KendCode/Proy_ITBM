@@ -9,9 +9,16 @@ include("encabezado.html");
 
 include("conexion/conexion.php");
 session_start();
+
+
 echo "bienvenido usuario: ".$_SESSION['admin'];
+
+
 echo "<br>con nombre: ".$_SESSION['nombre'];
-//include("bloqueo.php");
+
+
+include("bloqueo.php");
+verifica_sesion();
 ?>
 
 
@@ -22,6 +29,10 @@ echo "<br>con nombre: ".$_SESSION['nombre'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+
+
 </head>
 <body>
     
@@ -36,14 +47,35 @@ echo "<br>con nombre: ".$_SESSION['nombre'];
 </form>
 
 
+<table id="example" class="table table-striped" style="width:100%">
+<!--<table border="2">-->
+<thead>
+	
 
+	<tr>
+		<th>CI</th>
+		<th>NOMBRE</th>
+		<th>APELLIDO PATERNO</th>
+		<th>APELLIDO MATERNO</th>
+		<th>FOTO</th>
+		<th>GENERO</th>
+		<th>EDAD</th>
+		<th>CELULAR</th>
+		<th>CONTRASEÑA</th>
+		<th>ROL</th>
+		<th>ELIMINAR</th>
+		<th>MODIFICAR</th>
+
+	</tr>
+</thead>
+  <tbody>
 <?php
 $ci=$_POST['ci'];
 
-
+//echo "hola mundo";
 //primer paso
-$consulta="SELECT * FROM estudiante WHERE ci = '$ci'";
-//$consulta="SELECT * FROM estudiante";
+//$consulta="SELECT * FROM estudiante WHERE ci = '$ci'";
+$consulta="SELECT * FROM estudiante";
 //segunda paso 
 $respuesta=mysqli_query($conexion,$consulta);
 
@@ -56,27 +88,14 @@ while($fila=mysqli_fetch_array($respuesta))
 //echo "el nombre del buscado es: ".$fila['nombre'];
 ?>
 
-<table border="2">
 
-	<tr>
-		<th>CI</th>
-		<th>NOMBRE</th>
-		<th>APELLIDO PATERNO</th>
-		<th>APELLIDO MATERNO</th>
-		<th>GENERO</th>
-		<th>EDAD</th>
-		<th>CELULAR</th>
-		<th>CONTRASEÑA</th>
-		<th>ROL</th>
-		<th>ELIMINAR</th>
-		<th>MODIFICAR</th>
-
-	</tr>
 	<tr>
 		<td><?php echo $fila['ci'];?></td>
 		<td><?php echo $fila['nombre'];?></td>
 			<td><?php echo $fila['ap_pat'];?></td>
 			<td><?php echo $fila['ap_mat'];?></td>
+			<?php $foto=$fila['foto']; ?>
+			<td><img src='/2-2024/images/fotos/<?php echo $foto;?>' alt="" width="100" height="100"></td>
 			<td><?php echo $fila['genero'];?></td>
 			<td><?php echo $fila['edad'];?></td>
 			<td><?php echo $fila['celular'];?></td>
@@ -99,7 +118,7 @@ while($fila=mysqli_fetch_array($respuesta))
 	</tr>
 
 
-</table>
+
 
 
 
@@ -108,7 +127,8 @@ while($fila=mysqli_fetch_array($respuesta))
 
 
 ?>
-
+</tbody>
+</table>
 
 <p>REGISTRO DE NUEVO ESTUDIANTE</p>
 <form action="registro.php">
@@ -118,7 +138,15 @@ while($fila=mysqli_fetch_array($respuesta))
 
 
 
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
 
+<script>
+	
+	new DataTable('#example');
+</script>
 
 </body>
 </html>
