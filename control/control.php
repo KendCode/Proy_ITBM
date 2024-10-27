@@ -1,10 +1,6 @@
 <?php
 include("../conexion/conexion.php");
 
-
-
-
-
 $usuario=$_POST['usuario'];
 $contrasena=$_POST['contrasena'];
 //echo "el usuario es:".$usuario;

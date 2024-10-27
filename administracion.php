@@ -28,7 +28,7 @@ verifica_sesion();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Administracion</title>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
 
@@ -70,7 +70,7 @@ verifica_sesion();
 </thead>
   <tbody>
 <?php
-$ci=$_POST['ci'];
+//$ci=$_POST['ci'];
 
 //echo "hola mundo";
 //primer paso
@@ -144,9 +144,15 @@ while($fila=mysqli_fetch_array($respuesta))
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
 
 <script>
-	
-	new DataTable('#example');
+        $('#example').DataTable({
+            pageLength: 10,
+            language: {
+                "lengthMenu": "Mostrar _MENU_ entradas",
+                "search": "Buscar:"
+            }
+        });
 </script>
+
 
 </body>
 </html>
